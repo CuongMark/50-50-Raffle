@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<magestore translate="label">
+			<label>Magestore Extension</label>
+			<sort_order>400</sort_order>
+		</magestore>
+	</tabs>
+	<sections>
+		<rafflee translate="label" module="rafflee">
+			<class>separator-top</class>
+			<label>Rafflee</label>
+			<tab>magestore</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>299</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<general translate="label">
+					<label>General Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>		
+						<enable translate="label">
+							<label>Enable</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>1</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</enable>
+						<create_tickets_when_state_order translate="label">
+							<label>Create the tickets when order state is</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_order_status</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</create_tickets_when_state_order>
+					</fields>				
+				</general>
+				<emails translate="label">
+					<label>Email Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>		
+						<to_winner translate="label">
+							<label>Mail to Winner</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>1</sort_order>
+							<source_model>rafflee/system_template_winner</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</to_winner>
+						<to_loser translate="label">
+							<label>Mail to Loser</label>
+							<frontend_type>select</frontend_type>
+							<source_model>rafflee/system_template_loser</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</to_loser>
+						<to_admin translate="label">
+							<label>Mail to admin</label>
+							<frontend_type>select</frontend_type>
+							<source_model>rafflee/system_template_admin</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</to_admin>
+						<new_ticket translate="label">
+							<label>Mail notify new ticket</label>
+							<frontend_type>select</frontend_type>
+							<source_model>rafflee/system_template_newticket</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment></comment>
+						</new_ticket>
+					</fields>				
+				</emails>
+			</groups>
+		</rafflee>
+	</sections>
+</config>

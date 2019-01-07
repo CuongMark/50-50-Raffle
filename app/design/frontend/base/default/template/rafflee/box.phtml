@@ -1,0 +1,52 @@
+<?php if($raffle = $this->getRaffle()): ?>
+	<ul class="raffle-info">
+		<?php $fund_price = $raffle->getCurrentNumber()*$raffle->getPrice(); ?>
+		<?php if($raffle->getData('limit_time')): ?>
+			<?php $timeleft = $raffle->getTimeleft(); ?>
+			<?php if($timeleft>0): ?>
+				<div class="auction_timer" product-id="<?php echo Mage::registry('current_product')->getId() ?>" seconds-left="<?php echo $timeleft ?>"></div>
+			<?php endif;?>
+		<?php else: ?>
+				<?php if($raffle->getData('total')): ?>
+					<div class="purchased_ticket"><?php echo $this->__('%s tickets purchased',$raffle->getCurrentNumber()) ?></div>
+				<?php endif; ?>
+				<div class="remain_ticket"><?php echo $this->__('%s tickets remaining',$raffle->getData('total_ticket') - $raffle->getCurrentNumber()) ?></div>        
+		<?php endif; ?>
+			<div class="fund_price"><?php echo $this->__('Raffle Fund now: %s',Mage::helper('core')->currency($fund_price)) ?></div>
+	</ul>
+	
+<?php $tickets = $this->getTicketInCurrentRaffle() ?>
+<div id="list-tickets">
+<?php if($tickets && $tickets->getSize()) : ?>
+<h5><?php echo $this->__('Your Tickets:') ?></h5>
+<?php $status = Magestore_Rafflee_Model_Tickets::status(); ?>
+	<table cellspacing="0" cellpadding="0" class="data-table" id="list_customer_bids" style="padding:10px;">	
+	<thead>
+		<tr>
+			<th><?php echo $this->__('Start Number')?></th>
+			<th><?php echo $this->__('End Number')?></th>
+			<th><?php echo $this->__('Price')?></th>
+			<th><?php echo $this->__('Purchased Time')?></th>
+			<th><?php echo $this->__('Status')?></th>
+		</tr>
+	</thead>
+	<?php foreach($tickets as $item): ?>
+		<?php $create_time =  new Zend_Date($item->getCreatedTime(),null,'en_GB') ?>
+		<tr>
+			<td><?php echo $item->getNumStart() ?></td>			
+			<td><?php echo $item->getNumEnd() ?></td>			
+			<td><?php echo Mage::helper('core')->currency(($item->getNumEnd() - $item->getNumStart() +1) * $raffle->getPrice()) ?></td>
+			<td><?php echo $this->formatDate($create_time,'medium',true) ?></td>
+			<td><?php echo $status[$item->getStatus()] ?></td>
+		</tr>
+	<?php endforeach; ?>
+	</table>	
+	<?php endif; ?>
+</div>
+<?php if($timeleft>0): ?>
+<script type="text/javascript" src="<?= $this->getJsUrl('js/magestore/rafflee/jquery.simple-timer.js') ?>"></script>
+<script>
+	jQuery('.auction_timer').startTimer({timeText:'<span><span id="daytime"><strong>%d</strong> Days </span><span id="hourtime"><strong>%h</strong></span><span id="tspace">:</span><span id="mtime"><strong>%m</strong></span><span id="tspace">:</span><span id="sctime"><strong>%s</strong></span></span>'});
+</script>
+<?php endif; ?>
+<?php endif; ?>

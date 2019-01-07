@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+        <reference name="top.links">
+            <block type="rafflee/rafflee" name="rafflee_toplink" >
+                <action method="addToTopLink" />
+            </block>
+        </reference>
+    </default>
+	<customer_account>
+		<reference name="customer_account_navigation">
+			<action method="addLink" translate="label" module="customer">
+				<name>rafflee_tickets</name>
+				<path>rafflee/index/tickets</path>
+				<label>50/50 Tickets</label>
+			</action>
+		</reference>	
+	</customer_account>
+	<rafflee_index_tickets> 
+		<!-- <reference name="head">
+            <action method="addJs">
+                <script>magestore/raffle/popup.js</script>
+            </action>			<action method="addJs">
+                <script>magestore/raffle/tickets.js</script>
+            </action>
+             <action method="addCss">
+                <styleSheet>css/magestore/raffle/tickets.css</styleSheet>
+            </action>
+        </reference> -->
+		<!-- <update handle="customer_account" /> -->
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+		<reference name="content">
+            <block type="rafflee/rafflee" name="raffle_tickets" template="rafflee/tickets.phtml" />
+        </reference>
+    </rafflee_index_tickets>
+	<rafflee_index_index>
+		<reference name="head">
+			<action method="addJs">
+				<script>magestore/rafflee/raffle.js</script>
+			</action>
+			<!-- <action method="addJs">
+				<script>magestore/rafflee/jquery.simple-timer.js</script>
+			</action> -->
+			<action method="addCss">
+				<styleSheet>css/magestore/rafflee/raffle.css</styleSheet>
+			</action>
+		</reference>
+		<reference name="root">
+			<action method="setTemplate">
+				<template>page/2columns-left.phtml</template>
+			</action>
+		</reference>
+		<!-- <reference name="content">
+			<block type="rafflee/rafflee" name="rafflee-grid" template="rafflee/grid.phtml" />
+		</reference> -->
+		<reference name="product_list">
+            <action method="setTemplate">
+                <template>rafflee/list.phtml</template>
+            </action>
+		</reference>
+		<update handle="catalog_category_view" />
+		<update handle="catalog_category_layered" />
+	</rafflee_index_index>
+
+	<rafflee_index_finished>
+		<update handle="rafflee_index_index" />
+		<reference name="product_list">
+            <action method="setTemplate">
+                <template>rafflee/finished.phtml</template>
+            </action>
+		</reference>
+	</rafflee_index_finished>
+
+	<catalog_product_view>
+		<!-- <reference name="head">
+			<action method="addJs">
+				<script>magestore/rafflee/box.js</script>
+			</action>
+			<action method="addJs">
+				<script>magestore/rafflee/jquery.simple-timer.js</script>
+			</action>
+			<action method="addCss">
+				<styleSheet>css/magestore/rafflee/box.css</styleSheet>
+			</action>
+		</reference> -->
+		<reference name="product.info.extrahint">
+			<block type="rafflee/rafflee" name="rafflee-box" template="rafflee/box.phtml" />
+		</reference>
+	</catalog_product_view>
+	<checkout_onepage_success>
+        <reference name="checkout.success">
+            <block type="rafflee/rafflee" name="ticketPurchased" template="rafflee/ticketPurchased.phtml"/>
+        </reference>
+    </checkout_onepage_success>
+</layout>

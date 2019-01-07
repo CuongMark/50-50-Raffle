@@ -1,0 +1,30 @@
+﻿<?php if($array = Mage::getSingleton('checkout/session')->getData('bought_rafflee_tickets')){ ?>
+<br/>
+<div class="ticket_purchased">
+	<?php foreach($array as $data): ?>
+		<?php if($data['start'] == $data['end']){ ?>
+			<span><?php echo $this->__('The ticket number you purchased from the <span class="ticket_name">%s</span> raffle is: <span class="ticket_number">%s</span>', $data['name'], $data['start']) ?></span>
+		<?php }else if($data['start']+1 == $data['end']){ ?>
+			<span><?php echo $this->__('The ticket numbers you purchased from the <span class="ticket_name">%s</span> raffle are <span class="ticket_number">%s</span> and <span class="ticket_number">%s</span>', $data['name'], $data['start'],$data['end']) ?></span>
+		<?php }else{ ?>
+			<span><?php echo $this->__('The ticket numbers you purchased from the <span class="ticket_name">%s</span> raffle are <span class="ticket_number">%s</span> through <span class="ticket_number">%s</span>.', $data['name'], $data['start'],$data['end']) ?></span>
+		<?php }; ?>
+		<br/>
+	<?php endforeach; ?>
+	<?php Mage::getSingleton('checkout/session')->unsetData('bought_rafflee_tickets'); ?>
+</div>
+<?php } ?>
+<style>
+span.ticket_number {
+    font-weight: bold;
+    color: red;
+}
+
+span.ticket_name {
+    font-weight: bold;
+}
+</style>
+<?php if($array = Mage::getSingleton('checkout/session')->getData('finished_rafflee_tickets')){ ?>
+<br/>
+<span style="color:red;"><?php echo $this->__('THE WINNING NUMBER IN %s IS:%s',$array['name'], $array['number']) ?></span>
+<?php } ?>

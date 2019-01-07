@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<raffleeadmin_adminhtml_rafflee_index>
+		<reference name="content">
+			<block type="rafflee/adminhtml_rafflee" name="rafflee" />
+		</reference>
+	</raffleeadmin_adminhtml_rafflee_index>
+	<raffleeadmin_adminhtml_rafflee_winner>
+		<reference name="content">
+			<block type="rafflee/adminhtml_winner" name="tickets" />
+		</reference>
+	</raffleeadmin_adminhtml_rafflee_winner>
+</layout>

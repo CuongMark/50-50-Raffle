@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<config>
+	<menu>
+		<rafflee module="rafflee" translate="title">
+			<title>50/50 Raffle</title>
+			<sort_order>71</sort_order>               
+			<children>
+				<rafflee module="rafflee" translate="title">
+					<title>Manage 50/50 Raffle</title>
+					<sort_order>0</sort_order>
+					<action>raffleeadmin/adminhtml_rafflee</action>
+				</rafflee>
+				<winner module="rafflee" translate="title">
+					<title>Winning Tickets</title>
+					<sort_order>0</sort_order>
+					<action>raffleeadmin/adminhtml_rafflee/winner</action>
+				</winner>
+				<settings module="rafflee" translate="title">
+					<title>Settings</title>
+					<sort_order>1000</sort_order>
+					<action>adminhtml/system_config/edit/section/rafflee</action>
+				</settings>
+			</children>
+		</rafflee>
+	</menu>
+	<acl>
+		<resources>
+			<all>
+				<title>Allow Everything</title>
+			</all>
+			<admin>
+				<children>
+					<system>
+						<children>
+							<config>
+								<children>
+									<rafflee module="rafflee" translate="title">
+										<title>Rafflee</title>
+										<sort_order>71</sort_order>									
+									</rafflee>								
+								</children>
+							</config>
+						</children>
+					</system>
+					<rafflee module="rafflee" translate="title">
+						<title>50/50 Raffle</title>
+						<sort_order>71</sort_order>               
+						<children>
+							<rafflee module="rafflee" translate="title">
+								<title>Manage 50/50 Raffle</title>
+								<sort_order>0</sort_order>
+								<action>raffleeadmin/adminhtml_rafflee</action>
+							</rafflee>
+							<winner module="rafflee" translate="title">
+								<title>Winning Tickets</title>
+								<sort_order>0</sort_order>
+								<action>raffleeadmin/adminhtml_rafflee/winner</action>
+							</winner>
+							<settings module="rafflee" translate="title">
+								<title>Settings</title>
+								<sort_order>1000</sort_order>
+								<action>adminhtml/system_config/edit/section/rafflee</action>
+							</settings>
+						</children>
+					</rafflee>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

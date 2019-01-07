@@ -1,0 +1,28 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @var $_productCollection Mage_Catalog_Block_Product_List
+ * @var $this Magestore_Rafflee_Block_Rafflee
+ */
+?>
+<?php $_productCollection = $this->getLayout()->getBlock('product_list')->getLoadedProductCollection(); ?>
+<?php $rafflee = $this->getRafflees() ?>
+<script>
+    <?php foreach ($rafflee as $raffle): ?>
+        var product = jQuery('#product-price-<?php echo $raffle->getProductId() ?>');
+        if(product) {
+            product.before('<div class="auction_timer" id="countdown_<?php echo $raffle->getProductId() ?>" product-id="<?php echo $raffle->getProductId() ?>" seconds-left="<?php echo $raffle->getTimeleft() ?>"></div>');
+        }
+    <?php endforeach; ?>
+//    $(document).ready(function ($) {
+        jQuery('.auction_timer').startTimer({timeText:'<?php echo __('<span><span id="daytime"><strong>%d</strong> Days </span><span id="hourtime"><strong>%h</strong></span><span id="tspace">:</span><span id="mtime"><strong>%m</strong></span><span id="tspace">:</span><span id="sctime"><strong>%s</strong></span></span>') ?>'});
+//    });
+</script>
